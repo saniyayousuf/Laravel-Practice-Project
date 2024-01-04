@@ -54,9 +54,13 @@ Route::get('/about', function(){
 
 // Route::get('/users/{id}/{name}', function ($id, $name){  
 //     return 'This is User  '.$name. ' with an id of ' .$id;
-//  });
+// //  });
 Route::get('/' , 'App\Http\Controllers\PagesController@index');
 Route::get('/services' , 'App\Http\Controllers\PagesController@services');
 Route::get('/about' , 'App\Http\Controllers\PagesController@about');
+
+// CRUD ROUTES
+Route::resource('posts','App\Http\Controllers\PostsController');
+
 
 require __DIR__.'/auth.php';
