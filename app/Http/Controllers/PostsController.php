@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Post;
+// importing MYSql Database library
+use DB;
 
 class PostsController extends Controller
 {
@@ -12,7 +15,12 @@ class PostsController extends Controller
      */
     public function index()
     {
-        //
+        //    we can use database quiries also:
+        //    $posts = DB::select('SELECT * FROM posts');
+        //     $posts = Post:all();
+        // $posts = Post::orderBy('title','desc')->paginate(1);
+        $posts = Post::orderBy('title','desc')->get();
+        return view('posts.index')->with('posts', $posts);
     }
 
     /**
@@ -20,7 +28,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
+        return view ('posts.create');
     }
 
     /**
@@ -28,7 +36,12 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+
+        return 123;
     }
 
     /**
@@ -36,7 +49,10 @@ class PostsController extends Controller
      */
     public function show(string $id)
     {
-        //
+       $post =  Post::find($id); 
+       return view('posts.show')->with('post',$post);
+
+       
     }
 
     /**
