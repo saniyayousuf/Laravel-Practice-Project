@@ -11,14 +11,12 @@
 @foreach($posts as $post)
 <div class="list-group">
     <a class="text-decoration-none" href="/posts/{{$post->id}}">
-    <h5 class="list-group-item fw-semibold">{{$post->title}}</h5>
-    {{-- <small>written on {{$post->created_at}}</small>
-    <small>written on {{$post->updated_at}}</small> --}}
-</a>
+    <h5 class="list-group-item ">{{$post->title}}</h5>
+    </a>
+    
 
 </div>
 @endforeach
-{{-- {{$posts->links()}} --}}
 @else
 <p>No posts Found</p>
 @endif
